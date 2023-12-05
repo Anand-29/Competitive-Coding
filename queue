@@ -1,0 +1,36 @@
+#include<stdio.h>
+int q[10];
+int f=-1,r=-1;
+void enqueue(int d){
+    if(r>9){
+        printf("\nover flow");
+    }
+    if(r==-1){
+        q[++r]=d;
+        f++;
+    }
+    else{
+        q[++r]=d;
+    }
+}
+void dequeue(){
+    if(f>r && r==-1){
+        printf("\nunderflow");
+    }
+    else{
+    printf("\ndeleted%d",q[f++]);
+    }
+}
+void display(){
+    for(int i=f;i<=r;i++){
+        printf("\nelement%d",q[i]);
+    }
+}
+int main(){
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    dequeue();
+    display();
+}
