@@ -26,6 +26,19 @@ void display(){
         printf("\nelement%d",q[i]);
     }
 }
+void min_and_max(){
+    int min=q[f];
+    int max=q[f];
+    for(int i=f+1;i<=r;i++){
+        if(min>q[i]){
+            min=q[i];
+        }
+        else{
+            max=q[i];
+        }
+    }
+    printf("\nminimum%d\nmaximu%d",min,max);
+}
 int main(){
     enqueue(10);
     enqueue(20);
@@ -33,4 +46,5 @@ int main(){
     enqueue(40);
     dequeue();
     display();
+    min_and_max();
 }
