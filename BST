@@ -1,0 +1,38 @@
+#include<stdlib.h>
+#include<stdio.h>
+struct node{
+    int data;
+    struct node *left;
+    struct node *right;
+};
+struct node *root=NULL;
+struct node *insert(struct node *root,int value){
+    if(root==NULL){
+        struct node *newnode=(struct node*)malloc(sizeof(struct node));
+        newnode->data=value;
+        newnode->left=NULL;
+        newnode->right=NULL;
+        return newnode;
+    }
+    if(root->data>value){
+        root->left=insert(root->left,value);
+    }
+    if(root->data<value){
+        root->right=insert(root->right,value);
+    }
+    return root;
+}
+void preorder(struct node *root){
+    if(root==NULL){
+        return;
+    }
+    printf("%d ",root->data);
+    preorder(root->left);
+    preorder(root->right);
+}
+int main(){
+    root=insert(root,10);
+    insert(root,5);
+    insert(root,12);
+    preorder(root);
+    }
