@@ -86,6 +86,9 @@ int main(){
     root=insert(root,10);
     insert(root,5);
     insert(root,12);
+    insert(root,2);
+    insert(root,30);
+    insert(root,3);
     preorder(root);
     printf("\n");
     inorder(root);
