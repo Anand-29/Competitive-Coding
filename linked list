@@ -65,17 +65,43 @@ void delete_end(){
     temp1->next=NULL;
     free(temp2);
 }
+void delete_begining(){
+    struct node *temp1=head;
+    struct node *temp2=temp1->next;
+    temp2->prev=NULL;
+    head=temp2;
+    free(temp1);
+}
+void delete_middle(int pos){
+    struct node *temp1=head;
+    struct node *temp2=temp1->next;
+    while(pos-1>1){
+        temp1=temp1->next;
+        temp2=temp2->next;
+        pos--;
+    }
+    temp1->next=temp2->next;
+    struct node *temp3=temp2->next;
+    temp3->prev=temp2;
+    free(temp2);
+}
 int main(){
     insert_end(10);
     insert_end(20);
     insert_end(30);
     insert_end(40);
     insert_end(50);
+    print();
     insert_begining(45);
     print();
     int pos=3;
     insertmiddle(5,pos);
     print();
     delete_end();
+    print();
+    delete_begining();
+    print();
+    pos=4;
+    delete_middle(pos);
     print();
 }
