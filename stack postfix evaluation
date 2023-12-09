@@ -5,8 +5,7 @@ void push(char d){
     stack[++top]=d;
 }
 int  pop(){
-    int a=stack[top--];
-    return a;
+    return stack[top--];
 }
 void display(){
     for(int i=top;i>=0;i--){
