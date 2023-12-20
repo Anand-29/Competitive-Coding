@@ -17,6 +17,15 @@ int main(){
     printf("enter the string");
     scanf("%s",a);
     for(int i=0;a[i]!='\0';i++){
+        if(a[i]>='a' && a[i]<='z'){
+            int  d;
+            printf("Enter the %c value:- ",a[i]);
+            scanf("%d",&d);
+            a[i]=(char)(d+48);
+        }
+    }
+    printf("%s",a);
+    for(int i=0;a[i]!='\0';i++){
         if(a[i]>=48 && a[i]<=58){
             push((int)a[i]-48);
         }
