@@ -21,13 +21,13 @@ int main(){
             int  d;
             printf("Enter the %c value:- ",a[i]);
             scanf("%d",&d);
-            a[i]=(char)(d+48);
+            a[i]=(char)(d);
         }
     }
-    printf("%s",a);
+   // printf("%s",a);
     for(int i=0;a[i]!='\0';i++){
-        if(a[i]>=48 && a[i]<=58){
-            push((int)a[i]-48);
+        if(a[i]!='+' && a[i]!='-'){
+            push((int)a[i]);
         }
         else{
             //printf("%d",top);
