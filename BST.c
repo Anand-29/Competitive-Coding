@@ -61,26 +61,41 @@ void maximum(struct node *root){
     maximum(root->right);
 }
 void leftborder(struct node *root){
-    if(root==NULL){
+   if(root==NULL){
         return;
     }
+    if(root->left!=NULL){
     printf("%d",root->data);
     leftborder(root->left);
+    }
+    else if(root->right!=NULL){
+        printf("%d",root->data);
+        leftborder(root->right);
+    }
 }
 void rightborder(struct node *root){
     if(root==NULL){
         return;
     }
-    printf("%d",root->data);
+    if(root->right!=NULL){
     rightborder(root->right);
-}
-void botomborder(struct node *root){
-    if(root->right==NULL || root->left==NULL){
+    printf("%d",root->data);
+    }
+    else if(root->left!=NULL){
+        rightborder(root->left);
         printf("%d",root->data);
+    }
+}
+void leafnodes(struct node *root){
+    if(root==NULL){
         return;
     }
-    botomborder(root->left);
-    botomborder(root->right);
+    leafnodes(root->left);
+    if(root->left==NULL && root->right==NULL){
+        printf("%d",root->data);
+    }
+    leafnodes(root->right);
+    
 }
 int main(){
     root=insert(root,10);
@@ -89,18 +104,18 @@ int main(){
     insert(root,2);
     insert(root,30);
     insert(root,3);
-    preorder(root);
+//    preorder(root);
+   // printf("\n");
+ //   inorder(root);
     printf("\n");
-    inorder(root);
+//   postorder(root);
     printf("\n");
-    postorder(root);
+  //  minimum(root);
+ //   maximum(root);
+//    leftborder(root);
     printf("\n");
-    minimum(root);
-    maximum(root);
-    leftborder(root);
+   rightborder(root);
     printf("\n");
-    rightborder(root);
-    printf("\n");
-    botomborder(root);
+   // leafnodes(root);
     printf("\n");
     }
