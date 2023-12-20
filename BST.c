@@ -97,6 +97,20 @@ void leafnodes(struct node *root){
     leafnodes(root->right);
     
 }
+int  height(struct node *root){
+    if(root==NULL){
+        return 0;
+    }
+    int l=height(root->left);
+    int r=height(root->right);
+    if(l>r){
+        return l+1;
+    }
+    else{
+        return r+1;
+    }
+    
+}
 int main(){
     root=insert(root,10);
     insert(root,5);
@@ -114,8 +128,9 @@ int main(){
  //   maximum(root);
 //    leftborder(root);
     printf("\n");
-   rightborder(root);
+  // rightborder(root);
     printf("\n");
    // leafnodes(root);
     printf("\n");
+    printf("%d",height(root));
     }
