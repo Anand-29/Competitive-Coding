@@ -42,9 +42,9 @@ void postorder(struct node *root){
     if(root==NULL){
         return;
     }
-    printf("%d ",root->data);
     postorder(root->left);
     postorder(root->right);
+     printf("%d ",root->data);
 }
 void minimum(struct node *root){
     if(root->left==NULL){
