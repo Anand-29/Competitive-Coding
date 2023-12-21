@@ -111,6 +111,39 @@ int  height(struct node *root){
     }
     
 }
+void printCurrentLevel(struct node* root, int level)
+{
+    if (root == NULL)
+        return;
+    if (level == 1)
+        printf("%d ", root->data);
+    else if (level > 1) {
+        printCurrentLevel(root->left, level - 1);
+        printCurrentLevel(root->right, level - 1);
+    }
+}
+void LevelOrder(struct node* root)
+{
+    int h = height(root);
+    int i;
+    for (i = 1; i <= h; i++)
+        printCurrentLevel(root, i);
+}
+int isBST(struct node* node)
+{
+    return (isBSTUtil(node, -1000, 1000));
+}
+int isBSTUtil(struct node* node, int min, int max)
+{
+    if (node == NULL)
+        return 1;
+    if (node->data < min || node->data > max)
+        return 0;
+    return isBSTUtil(node->left, min, node->data - 1)
+           &&
+           isBSTUtil(node->right, node->data + 1,
+                     max);
+}
 int main(){
     root=insert(root,10);
     insert(root,5);
@@ -118,19 +151,28 @@ int main(){
     insert(root,2);
     insert(root,30);
     insert(root,3);
-//    preorder(root);
-   // printf("\n");
- //   inorder(root);
+    preorder(root);
     printf("\n");
-//   postorder(root);
+    inorder(root);
     printf("\n");
-  //  minimum(root);
- //   maximum(root);
-//    leftborder(root);
+    postorder(root);
     printf("\n");
-  // rightborder(root);
+    minimum(root);
     printf("\n");
-   // leafnodes(root);
+    maximum(root);
+    printf("\n");
+    leftborder(root);
+    printf("\n");
+    rightborder(root);
+    printf("\n");
+    leafnodes(root);
     printf("\n");
     printf("%d",height(root));
+    printf("\n");
+    LevelOrder(root);
+    printf("\n");
+    if(isBST(root)==1)
+    printf("BST");
+    else
+    printf("not BST");
     }
