@@ -25,12 +25,12 @@ char pop(){
 }
 void empty(){
         for(int i=top;i>=0;i--){
-            //printf("%c",stack[i]);
             s[++t]=stack[i];
         }
         top=-1;
     }
 void display(){
+    printf("solution:- ");
     for(int i=top;i>=0;i--){
         printf("%d",stack[i]);
     }
@@ -41,35 +41,30 @@ int main(){
     scanf("%s",a);
     for(int i=0;a[i]!='\0';i++){
         if(a[i]>=48 && a[i]<=58){
-            //printf("%c",a[i]);
             s[++t]=a[i];
         }
         else{
             switch(a[i]){
                 case '+':
                         if(top!=-1 && precedence(stack[top])>precedence(a[i])){
-                        //printf("%c",pop());
                         s[++t]=pop();
                         }
                         push(a[i]);
                         break;
                 case '-': 
                         if(top!=-1 && precedence(stack[top])>precedence(a[i])){
-                        //printf("%c",pop());
                         s[++t]=pop();
                         }
                         push(a[i]);
                         break;
                 case '/': 
                         if(top!=-1 && precedence(stack[top])>precedence(a[i])){
-                        //printf("%c",pop());
                         s[++t]=pop();
                         }
                         push(a[i]);
                         break;
                 case '*': 
                         if(top!=-1 && precedence(stack[top])>precedence(a[i])){
-                        //printf("%c",pop());
                         s[++t]=pop();
                         }
                         push(a[i]);
@@ -79,14 +74,12 @@ int main(){
                         break;
                 case ')': 
                         if(stack[top]!='('){
-                        //printf("%c",pop());
                         s[++t]=pop();
                         }
                         pop();
                         break;
                 case '^': 
                         if(top!=-1 && precedence(stack[top])>=precedence(a[i])){
-                        //printf("%c",pop());
                         s[++t]=pop();
                         }
                         push(a[i]);
@@ -95,7 +88,7 @@ int main(){
         }
     }
     empty();
-    //printf("%s\n",s);
+    printf("postfix of %s is %s\n",a,s);
     //EVALUATE THE EXPRESSION:-
     for(int i=0;s[i]!='\0';i++){
         if(s[i]>='0' && s[i]<='9'){
@@ -104,16 +97,12 @@ int main(){
         else{
             int v1=(int)(pop()-'0');
             int v2=(int)(pop()-'0');
-            //printf("%d%d",v1,v2);
             switch(s[i]){
                 case '+':
                 push((char)(v1+v2+'0'));
-                //printf("%c",(char)(v1+v2+'0'));
                 break;
                 case '*':
-                //printf("%c",v1*v2);
                 push(v1*v2);
-                //printf("%c",(char)(v1*v2));
                 break;
                 case '-':
                 push((char)(v1-v2+'0'));
