@@ -7,30 +7,22 @@ void en(int d){
         f=0;
         a[++r]=d;
     }
-    if(r>=n || f==r+1){
-        if(f>0){
-            if(r==n){
+    else if(r>=n-1 || r+1==f){
+        if(f>0 && r>=n-1){
             r=-1;
             a[++r]=d;
-            }
-            else {
+        }
+        else{
                 printf("full");
             }
         }
-        else{
-        printf("full");
-        }
-    }
     else{
-        if(r+1==f){
-            printf("stack full");
-        }
         a[++r]=d;
     }
-    printf(" after %d  %d \n",f,r);
+     printf(" after %d  %d \n",f,r);
 }
 void de(){
-    printf(" before %d  %d \n",f,r);
+     printf(" before %d  %d \n",f,r);
     if(f==-1 || f>r){
         if(r>0 && r<f){
             f=0;
@@ -46,15 +38,22 @@ void de(){
     
    printf(" after %d  %d \n",f,r);
 }
+void display(){
+    if(f<=r){
+    for(int i=f;i<=r;i++){
+        printf("%d ",a[i]);
+    }
+    }
+   
+}
 int main(){
     en(10);
     en(10);
     en(10);
-   de();
-   de();
-de();
-en(10);
-    
+    en(10);
+    de();
+    en(10);
+   // en(10);
     
     
 }
