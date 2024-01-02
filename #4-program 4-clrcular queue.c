@@ -1,80 +1,90 @@
 #include<stdio.h>
-int f=-1,r=-1,n=3;
-int a[3];
-void en(int d){
-    if(f==-1){
-        f=0;
-        a[++r]=d;
+#define size 5
+int front=-1,rear=-1;
+int queue[size];
+void enqueue(int data){
+    if(front==-1){
+        front=0;
+        queue[++rear]=data;
     }
-    else if(r>=n-1 || r+1==f){
-        if(f>0 && r>=n-1){
-            r=-1;
-            a[++r]=d;
+    else if(rear>=size-1 || rear+1==front){
+        if(front>0 && rear>=size-1){
+            rear=-1;
+            queue[++rear]=data;
         }
         else{
-                printf("queue is full");
+                printf("queue is full\n");
             }
         }
     else{
-        a[++r]=d;
+        queue[++rear]=data;
     }
-     printf(" after %d  %d \n",f,r);
 }
-void de(){
-     printf(" before %d  %d \n",f,r);
-    if(f==-1 || f>r){
-        if(r>=0 && f>=n-1){
-            f=0;
+void dequeue(){
+    if(front==-1 || front>rear){
+        if(rear>=0 && front>=size-1){
+            front=0;
         }
         else{
-        f++;
+        front++;
         }
     }
-    else if(f<r){
-        f++;
+    else if(front<rear){
+        front++;
     }
     else{
-        f=-1;
-        r=-1;
-        printf("empty");
+        front=-1;
+        rear=-1;
+        printf("empty\n");
     }
-    
-   printf(" after %d  %d \n",f,r);
 }
 void display(){
-    if(f<=r){
-    for(int i=f;i<=r;i++){
-        printf("%d ",a[i]);
+    if(front<=rear){
+    for(int i=front;i<=rear;i++){
+        printf("%d ",queue[i]);
     }
     }
     else{
-        for(int i=f;i<n;i++){
-            printf("%d ",a[i]);
+        for(int i=front;i<size;i++){
+            printf("%d ",queue[i]);
         }
-        for(int i=0;i<=r;i++){
-            printf("%d ",a[i]);
+        for(int i=0;i<=rear;i++){
+            printf("%d ",queue[i]);
         }
     }
-   
 }
 int main(){
-    en(10);
-    display();
-    en(20);
-    display();
-    en(30);
-    display();
-    de();
-    display();
-    en(50);
-    display();
-    en(60);
-    display();
-    de();
-    display();
-    de();
-    display();
-    de();
-    display();
-    
+    while(1){
+        printf("press 1 to enqueue data\n");
+        printf("press 2 to dequeue data\n");
+        printf("press 3 to display queue elements\n");
+        printf("press 4 to display front element\n");
+        printf("press 5 to display rear element\n");
+        printf("press 6 to exit\n");
+        int a;
+        scanf("%d",&a);
+        switch(a){
+            case 1:
+            printf("enter the data\n");
+            scanf("%d",&a);
+            enqueue(a);
+            break;
+            case 2:
+            printf("%d is dequeued\n",queue[front]);
+            dequeue();
+            break;
+            case 3:
+            printf("the elements in queue are\n");
+            display();
+            break;
+            case 4:
+            printf("the front element is %d \n",queue[front]);
+            break;
+            case 5:
+            printf("the rear element is %d \n",queue[rear]);
+            break;
+            case 6:
+            return 0;
+        }
+    }
 }
