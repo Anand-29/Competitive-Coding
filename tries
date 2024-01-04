@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdbool.h>
+#include<stdlib.h>
+struct node{
+    struct node *a[26];
+    bool end;
+};
+struct node *root=NULL;
+struct node * newnode(){
+    struct node*nn=malloc(sizeof(struct node));
+    for(int i=0;i<26;i++){
+        nn->a[i]=NULL;
+    }
+    nn->end=false;
+    return nn;
+}
+void insert(struct node *root,char d[]){
+    struct node* t=root;
+    for(int i=0;i<d[i]!='\0';i++){
+        int index=d[i]-'a';
+        if(t->a[index]==NULL){
+            t->a[index]=newnode();
+        }
+        t=t->a[index];
+    }
+    t->end=true;
+}
+void print(struct node *t){
+    if(t->end==true){
+            printf("\n");
+            
+        }
+    for(int i=0;i<26;i++){
+        
+        if(t->a[i]!=NULL){
+            printf("%c",i+'A');
+            print(t->a[i]);
+        }
+    }
+}
+int main(){
+    root=newnode();
+    insert(root,"abc");
+    insert(root,"abc");
+    insert(root,"def");
+    print(root);
+}
